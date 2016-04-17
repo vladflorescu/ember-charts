@@ -2,19 +2,7 @@ import Ember from 'ember';
 import config from 'ember-charts/config/environment';
 
 export default Ember.Controller.extend({
-  datasetDescriptions: [{
-    id: 1,
-    name: 'Sample Data Set',
-    isUnidimensional: true
-  }, {
-    id: 2,
-    name: 'Another Sample Data Set',
-    isUnidimensional: true
-  }, {
-    id: 3,
-    name: 'You got it',
-    isUnidimensional: false
-  }],
+  activeDataset: Ember.inject.service(),
 
   actions: {
     requestDataset(datasetDescription) {
@@ -23,7 +11,15 @@ export default Ember.Controller.extend({
       //       ? '/unidimensional_datasets'
       //       : '/bidimensional_datasets';
       // url += datasetDescription;
-      // Ember.$.ajax(`${config.apiHost}/${config.apiPrefix}/datasets`)
+      // Ember.$.ajax(url).then(dataset => {
+      //   let modelName;
+      //   if (datasetDescription.get('isUnidimensional')) {
+      //     modelName = 'unidimensionalDataset';
+      //   } else {
+      //     modelName = 'bidimensionalDataset';
+      //   }
+      //   this.store.create(modelName, dataset);
+      // })
     },
 
     uploadDocument(file) {

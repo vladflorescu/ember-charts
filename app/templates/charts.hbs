@@ -1,0 +1,21 @@
+<div class="row-fluid u-margin-Tm">
+  <div class="col-lg-2 col-lg-push-10">
+    {{#if availableCharts}}
+      {{select-picker value=selectedChart
+        content=availableCharts
+        optionLabelPath='content.label'
+        optionValuePath='content.componentName'}}
+    {{/if}}
+  </div>
+  <div class="col-lg-10 col-lg-pull-2 chart-wrapper">
+    {{#if activeDataset.instance}}
+      {{#if selectedChart}}
+        {{component selectedChart data=activeDataset.instance.values}}
+      {{else}}
+        <p class="lead text-center">Please select a graph</p>
+      {{/if}}
+    {{else}}
+      <p class="lead text-center">No dataset selected</p>
+    {{/if}}
+  </div>
+</div>
