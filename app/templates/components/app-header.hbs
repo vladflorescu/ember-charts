@@ -1,3 +1,25 @@
 <div class="pull-right">
-  <button type="button" class="btn btn-default">Upload a document </button>
+  {{#if uploadStarted}}
+    <span class="feedback-wrapper">
+      {{#if isFileUploading}}
+        <span class="u-color-beige">
+          {{fa-icon 'refresh' spin=true}}
+        </span>
+      {{else}}
+        {{#if didUploadedSuccessfully}}
+          <span class="u-color-beige">
+            File successfully uploaded
+          </span>
+        {{else}}
+          <span class="u-color-red-lighter">
+            An error occurred
+          </span>
+        {{/if}}
+      {{/if}}
+    </span>
+  {{/if}}
+
+  <span class="btn btn-default btn-file">
+    Upload document{{file-picker on-file-change=(action 'uploadDocument')}}
+  </span>
 </div>

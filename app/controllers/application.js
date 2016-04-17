@@ -24,6 +24,23 @@ export default Ember.Controller.extend({
       //       : '/bidimensional_datasets';
       // url += datasetDescription;
       // Ember.$.ajax(`${config.apiHost}/${config.apiPrefix}/datasets`)
+    },
+
+    uploadDocument(file) {
+      let formData = new FormData();
+      formData.append('file', file[0]);
+
+      this.toggleProperty('isFileUploading');
+
+      Ember.$.ajax({
+        url: `${config.apiHost}/${config.apiPrefix}/documents/upload`,
+        data: formData,
+        type: 'POST',
+        contentType: false,
+        processData: false
+      }).always(() => {
+        this.toggleProperty('isFileUploading');
+      });
     }
   }
 });

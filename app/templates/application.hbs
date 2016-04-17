@@ -1,5 +1,7 @@
 <div class="container-fluid">
-  {{app-header}}
+  {{app-header isFileUploading=isFileUploading
+    didUploadedSuccessfully=didUploadedSuccessfully
+    on-upload-document=(action 'uploadDocument')}}
 
   {{app-sidebar datasetDescriptions=datasetDescriptions
     on-request-dataset=(action 'requestDataset')}}
