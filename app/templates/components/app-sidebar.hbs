@@ -1,0 +1,7 @@
+<ul class="u-padding-Ln">
+  {{#each datasetDescriptions as |dsDescription|}}
+    <div class="u-margin-Vxxs">
+      <a href="#" {{action 'requestDataset' dsDescription}}>{{dsDescription.name}}</a>
+    </div>
+  {{/each}}
+</ul>

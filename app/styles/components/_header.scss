@@ -1,0 +1,17 @@
+header {
+  height: $header-height;
+  padding: 8px;
+  background-color: $primary-color;
+  min-height: initial;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: $header-height;
+    z-index: 1;
+    box-shadow: 0px 2px 2px black;
+  }
+}
