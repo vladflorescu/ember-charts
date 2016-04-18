@@ -5,12 +5,13 @@ const { computed } = Ember;
 export default Ember.Controller.extend({
   activeDataset: Ember.inject.service(),
 
-  charts: [
-    { label: 'Bar Chart', componentName: 'bar-chart' },
-    { label: 'Pie Chart', componentName: 'pie-chart' }
-  ],
-
   availableCharts: computed('charts', function() {
-    return this.charts;
+    if (this.get('activeDataset.instance.constructor.modelName') === 'unidimensional-dataset') {
+      return Ember.A([
+        { label: 'Bar Chart', componentName: 'bar-chart' },
+        { label: 'Pie Chart', componentName: 'pie-chart' }
+      ]);
+    }
+    return Ember.A();
   }).readOnly()
 });
