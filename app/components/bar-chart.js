@@ -1,24 +1,8 @@
 import Ember from 'ember';
+import c3AbstractChart from './c3-abstract-chart';
 
-export default Ember.Component.extend({
-  formattedData: Ember.computed('data', function() {
-    return _.map(this.get('data'), el => [el.key, el.val]);
-  }).readOnly(),
-
+export default c3AbstractChart.extend({
   didRender() {
-    if (Ember.isNone(this.get('chart'))) {
-      this.set('chart', c3.generate({
-        data: {
-          bindTo: '#chart',
-          columns: this.get('formattedData'),
-          type:    'bar'
-        },
-        axis: { x: { tick: { format: () => 'Values' } }}
-      }));
-    } else {
-      this.get('chart').load({
-        columns: this.get('formattedData')
-      });
-    }
+    this.generateChart('bar', { axis: { x: { tick: { format: () => 'Values' }}}});
   }
 });
