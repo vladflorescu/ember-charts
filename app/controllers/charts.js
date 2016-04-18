@@ -9,9 +9,12 @@ export default Ember.Controller.extend({
     if (this.get('activeDataset.instance.constructor.modelName') === 'unidimensional-dataset') {
       return Ember.A([
         { label: 'Bar Chart', componentName: 'bar-chart' },
-        { label: 'Pie Chart', componentName: 'pie-chart' }
+        { label: 'Pie Chart', componentName: 'pie-chart' },
+        { label: 'Line Chart', componentName: 'xy-line-chart' }
       ]);
     }
-    return Ember.A();
+    return Ember.A([
+      { label: 'Line Chart', componentName: 'xy-line-chart' }
+    ]);
   }).readOnly()
 });

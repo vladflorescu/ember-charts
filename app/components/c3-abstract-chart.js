@@ -4,7 +4,9 @@ export default Ember.Component.extend({
   layoutName: 'components/c3-abstract-chart',
 
   formattedData: Ember.computed('data', function() {
-    return _.map(this.get('data'), this.dataFormattingFunction || (el => [el.key, el.val]));
+    return this.dataFormattingFunction
+      ? this.dataFormattingFunction()
+      : _.map(this.get('data'), el => [el.key, el.val]);
   }).readOnly(),
 
   generateChart(type, options = {}) {
