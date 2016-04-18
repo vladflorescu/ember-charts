@@ -30,21 +30,21 @@ export default Ember.Route.extend({
 
     // sample unidimensional data
     // this.set('activeDataset.instance', this.store.createRecord('unidimensionalDataset', {
-      // Sample Category Data
-      // values: Ember.A([
-      //   { key: 'vlad', val: 10 },
-      //   { key: 'iustin', val: 7 },
-      //   { key: 'vladut', val: 12 },
-      //   { key: 'stan', val: 3 }
-      // ])
+    //   Sample Category Data
+    //   values: Ember.A([
+    //     { key: 'vlad', val: 10 },
+    //     { key: 'iustin', val: 7 },
+    //     { key: 'vladut', val: 12 },
+    //     { key: 'stan', val: 3 }
+    //   ])
 
-      // Sample Date Data
-      // values: Ember.A([
-      //   { key: '15-12-1996', val: 10 },
-      //   { key: '12-05-1994', val: 7 },
-      //   { key: '12-09-1999', val: 12 },
-      //   { key: '03-05-1992', val: 3 }
-      // ])
+    //   Sample Date Data
+    //   values: Ember.A([
+    //     { key: '15-12-1996', val: 10 },
+    //     { key: '12-05-1994', val: 7 },
+    //     { key: '12-09-1999', val: 12 },
+    //     { key: '03-05-1992', val: 3 }
+    //   ])
     // }));
 
     // Sample bidimensional data

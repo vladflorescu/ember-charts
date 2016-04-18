@@ -1,8 +1,9 @@
 import Ember from 'ember';
-import c3AbstractChart from './c3-abstract-chart';
+import C3AbstractChart from './c3-abstract-chart';
+import C3AbstractBidimensionalChartMixin from '../mixins/c3-abstract-bidimensional-chart-mixin';
 
-export default c3AbstractChart.extend({
-  dataFormattingFunction() {
+export default C3AbstractChart.extend(C3AbstractBidimensionalChartMixin, {
+  getFormattedData() {
     if (this.get('data.firstObject.val.constructor') !== Array) {
       // unidimensionalDataset
 
@@ -17,39 +18,12 @@ export default c3AbstractChart.extend({
       return _.unzipWith([['x', 'value'], zippedData], _.concat);
     } else {
       // bidimensionalDataset
-
-      let xAxisData   = _.concat(['x'], _.map(this.get('data'), d => d.key));
-
-      let xVals       = _.map(this.get('data'), xval => xval.val);
-      let yKeys       = _.map(xVals.get('firstObject'), yval => yval.key);
-      let yValsZipped = _.unzipWith(xVals, function() {
-        return _.map(arguments, yVal => yVal.val);
-      });
-      let yData = _.unzipWith([yKeys, yValsZipped], _.concat);
-
-      return _.concat([xAxisData], yData);
+      return this.bidimensionalChartDefaultFormatData();
     }
   },
 
   didRender() {
-    let type = 'indexed';
-    let firstKey = this.get('data.firstObject.key');
-    let firstVal = this.get('data.firstObject.val');
-    if (firstKey.constructor !== Number) {
-      let firstKeyAsDate = moment(firstKey, 'DD-MM-YYYY', true);
-      if (firstKeyAsDate.isValid()) {
-        type = 'timeseries';
-      } else {
-        type = 'category';
-      }
-    }
-
-    let chartOptions = { data: { x: 'x'}, axis: { x: { type: type }}};
-    if (type === 'timeseries') {
-      chartOptions.data.xFormat = '%d-%m-%Y';
-      chartOptions.axis.x.tick  = { format: '%d-%m-%Y' };
-    }
-
+    let chartOptions = this.getXAxisRelatedChartOptions();
     this.generateChart(null, chartOptions);
   }
 });

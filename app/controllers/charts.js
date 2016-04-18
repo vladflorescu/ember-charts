@@ -14,7 +14,10 @@ export default Ember.Controller.extend({
       ]);
     }
     return Ember.A([
-      { label: 'Line Chart', componentName: 'xy-line-chart' }
+      { label: 'Bar Chart', componentName: 'bar-chart' },
+      { label: 'Line Chart', componentName: 'xy-line-chart' },
+      { label: 'Area Chart', componentName: 'area-chart' },
+      { label: 'Scatter Plot', componentName: 'scatter-plot' }
     ]);
   }).readOnly()
 });
