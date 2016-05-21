@@ -34,7 +34,13 @@ export default Ember.Controller.extend({
         type: 'POST',
         contentType: false,
         processData: false
-      }).always(() => {
+      })
+      .then(resp => {
+        this.set('didUploadedSuccessfully', true);
+      }, error => {
+        this.set('didUploadedSuccessfully', false);
+      })
+      .always(() => {
         this.toggleProperty('isFileUploading');
       });
     }
