@@ -28,9 +28,9 @@ export default Ember.Route.extend({
     this._super(...arguments);
     controller.set('datasetDescriptions', model);
 
-    // sample unidimensional data
+    // // Sample unidimensional data
     // this.set('activeDataset.instance', this.store.createRecord('unidimensionalDataset', {
-    //   Sample Category Data
+    //   // Sample Category Data
     //   values: Ember.A([
     //     { key: 'vlad', val: 10 },
     //     { key: 'iustin', val: 7 },
@@ -38,7 +38,7 @@ export default Ember.Route.extend({
     //     { key: 'stan', val: 3 }
     //   ])
 
-    //   Sample Date Data
+    //   // Sample Date Data
     //   values: Ember.A([
     //     { key: '15-12-1996', val: 10 },
     //     { key: '12-05-1994', val: 7 },
@@ -50,9 +50,9 @@ export default Ember.Route.extend({
     // Sample bidimensional data
     this.set('activeDataset.instance', this.store.createRecord('bidimensionalDataset', {
       values: Ember.A([{
-        key: 'vlad',
+        key: 'Vlad',
         val: Ember.A([{
-          key: 'rosii',
+          key: 'Rosii',
           val: 5
         }, {
           key: 'ceapa',
@@ -62,9 +62,9 @@ export default Ember.Route.extend({
           val: 1
         }])
       }, {
-        key: 'iustin',
+        key: 'Leontin',
         val: Ember.A([{
-          key: 'rosii',
+          key: 'Rosii',
           val: 6
         }, {
           key: 'ceapa',
@@ -74,9 +74,9 @@ export default Ember.Route.extend({
           val: 6
         }])
       }, {
-        key: 'vladut',
+        key: 'Ion',
         val: Ember.A([{
-          key: 'rosii',
+          key: 'Rosii',
           val: 7
         }, {
           key: 'ceapa',
@@ -86,9 +86,9 @@ export default Ember.Route.extend({
           val: 7
         }])
       }, {
-        key: 'radu',
+        key: 'Allx',
         val: Ember.A([{
-          key: 'rosii',
+          key: 'Rosii',
           val: 3
         }, {
           key: 'ceapa',

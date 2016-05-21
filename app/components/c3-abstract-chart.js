@@ -33,7 +33,7 @@ export default Ember.Component.extend({
   },
 
   generateChart(type, options = {}) {
-    if (Ember.isNone(this.get('chart'))) {
+    // if (Ember.isNone(this.get('chart'))) {
       this.set('chart', c3.generate(_.merge(options, {
         data: {
           bindTo: '#chart',
@@ -41,10 +41,11 @@ export default Ember.Component.extend({
           type:    type
         }
       })));
-    } else {
-      this.get('chart').load({
-        columns: this.get('formattedData')
-      });
-    }
+    // } else {
+    //   this.get('chart').load({
+    //     columns: this.get('formattedData'),
+    //     unload: this.get('chart').categories()
+    //   });
+    // }
   }
 });

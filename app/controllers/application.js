@@ -36,11 +36,15 @@ export default Ember.Controller.extend({
         processData: false
       })
       .then(resp => {
-        this.set('didUploadedSuccessfully', true);
-      }, error => {
-        this.set('didUploadedSuccessfully', false);
-      })
-      .always(() => {
+          this.set('didUploadedSuccessfully', true);
+
+          let modelName = Object.keys(resp)[0];
+          this.set('activeDataset.instance', this.get('store').createRecord(modelName, resp[modelName]));
+        },
+        error => {
+          this.set('didUploadedSuccessfully', false);
+        }
+      ).always(() => {
         this.toggleProperty('isFileUploading');
       });
     }
