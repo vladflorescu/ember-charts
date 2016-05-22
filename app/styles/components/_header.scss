@@ -3,9 +3,6 @@ header {
   padding: 8px;
   background-color: $primary-color;
   min-height: initial;
-    box-shadow: 0 0.1em 0.8em #000;
-    opacity: 0.95;
-    z-index: 1;
 
   .feedback-wrapper {
     position: relative;
@@ -20,5 +17,7 @@ header {
     right: 0;
     top: $header-height;
     height: 3px;
+    box-shadow: 0 0.1em 0.5em #000 inset;
+    z-index: 1;
   }
 }
