@@ -4,7 +4,8 @@
     on-upload-document=(action 'uploadDocument')}}
 
   {{app-sidebar datasetDescriptions=datasetDescriptions
-    on-request-dataset=(action 'requestDataset')}}
+    on-request-dataset=(action 'requestDataset')
+    on-remove-description=(action 'removeDatasetDescription')}}
 
   <main>
     {{outlet}}

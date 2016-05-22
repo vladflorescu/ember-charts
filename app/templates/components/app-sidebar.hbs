@@ -1,7 +1,10 @@
 <ul class="u-padding-Ln">
   {{#each datasetDescriptions as |dsDescription|}}
-    <div class="u-margin-Vxxs">
-      <a href="#" {{action 'requestDataset' dsDescription}}>{{dsDescription.name}}</a>
+    <div class="u-margin-Vxxs u-padding-Rxm dataset-desc">
+      <a href="#" {{action 'requestDataset' dsDescription}}>{{dsDescription.title}}</a>
+      <button class="btn-container" {{action 'deleteDatasetWithDescription' dsDescription}}>
+        {{fa-icon 'times'}}
+      </button>
     </div>
   {{/each}}
 </ul>

@@ -6,20 +6,15 @@ export default Ember.Controller.extend({
 
   actions: {
     requestDataset(datasetDescription) {
-      // let url = `${config.apiHost}/${config.apiPrefix}`;
-      // url += datasetDescription.get('isBidimensional')
-      //       ? '/unidimensional_datasets'
-      //       : '/bidimensional_datasets';
-      // url += datasetDescription;
-      // Ember.$.ajax(url).then(dataset => {
-      //   let modelName;
-      //   if (datasetDescription.get('isUnidimensional')) {
-      //     modelName = 'unidimensionalDataset';
-      //   } else {
-      //     modelName = 'bidimensionalDataset';
-      //   }
-      //   this.store.create(modelName, dataset);
-      // })
+      let id = datasetDescription.get('datasetId');
+      let modelName = datasetDescription.get('isUnidimensional')
+                    ? 'unidimensional-dataset'
+                    : 'bidimensional-dataset';
+
+      this.get('store').findRecord(modelName, id).then(dataset => {
+        console.log('dataset');
+        this.set('activeDataset.instance', dataset);
+      });
     },
 
     uploadDocument(file) {
@@ -36,17 +31,30 @@ export default Ember.Controller.extend({
         processData: false
       })
       .then(resp => {
-          this.set('didUploadedSuccessfully', true);
+        this.set('didUploadedSuccessfully', true);
 
-          let modelName = Object.keys(resp)[0];
-          this.set('activeDataset.instance', this.get('store').createRecord(modelName, resp[modelName]));
-        },
-        error => {
-          this.set('didUploadedSuccessfully', false);
-        }
-      ).always(() => {
+        let modelName = Object.keys(resp)[0];
+        let dataset = this.get('store').createRecord(modelName, resp[modelName]);
+        this.set('activeDataset.instance', dataset);
+
+        this.get('datasetDescriptions').pushObject(
+          this.store.createRecord('datasetDescription', {
+            datasetId: dataset.get('id'),
+            title: dataset.get('title'),
+            isUnidimensional: /^unidimensional/.test(modelName) ? true : false
+          })
+        );
+      }, error => {
+        this.set('didUploadedSuccessfully', false);
+      })
+      .always(() => {
         this.toggleProperty('isFileUploading');
       });
+    },
+
+    removeDatasetDescription(datasetDesc) {
+      datasetDesc.destroyRecord();
+      this.get('datasetDescriptions').removeObject(datasetDesc);
     }
   }
 });

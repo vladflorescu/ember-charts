@@ -7,12 +7,30 @@ aside {
   bottom: 0;
   color: white;
   padding: 8px;
+  padding-right: 0;
 
   a {
     color: $gray-lighter;
 
     &:hover, &:active, &:visited, &:focus {
       color: white;
+    }
+  }
+
+  div.dataset-desc {
+    > button {
+      position: absolute;
+      right: 0;
+
+      > i {
+        vertical-align: baseline;
+        display: none;
+        color: #FF6363;
+      }
+    }
+
+    &:hover > button > i {
+      display: initial;
     }
   }
 }
