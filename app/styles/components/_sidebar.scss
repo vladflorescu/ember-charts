@@ -1,6 +1,6 @@
 aside {
   width: $sidebar-width;
-  background: $primary-color;
+  background: $secondary-color;
   position: absolute;
   left: 0;
   top: $header-height;
@@ -8,6 +8,8 @@ aside {
   color: white;
   padding: 8px;
   padding-right: 0;
+  z-index: -1;
+          box-shadow: -1.5em -1.7em 2.5em -2em #000 inset;
 
   a {
     color: $gray-lighter;
